@@ -3,4 +3,4 @@ from django.views import View
 
 class IndexPage(View):
     def get(self, request):
-        pass
+        return render(request,'weather_app/index.html')
