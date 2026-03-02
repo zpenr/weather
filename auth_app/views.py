@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
 from auth_app.models import Users
+from auth_app import forms
 import bcrypt
 import uuid
 
@@ -27,9 +28,11 @@ class LogOut(View):
         return responce
 
 class Registration(View):
+    
+
     def get(self, request) -> render:
-        authorization(request)
-        return render(request,'auth_app/login.html')
+        form = forms.LoginForm()
+        return render(request,'auth_app/login.html', {'form':form})
     
     def post(self,request) -> HttpResponse:
         login = request.POST['login']
@@ -41,7 +44,8 @@ class Registration(View):
     
 class Authentication(View):
     def get(self,request) -> render:
-        return render(request,'auth_app/sign-up.html')
+        form = forms.SignUpForm()
+        return render(request,'auth_app/sign-up.html', {'form':form})
     
     def post(self,request) -> HttpResponse:
         login = request.POST['login']
