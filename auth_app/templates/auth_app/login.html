@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="{% url 'index'%}">Login page</a>
+{% extends "auth_app/base.html" %}
+{% block form %}
     <form action="{% url 'login'%}" method="post">
         {% csrf_token %}
-        <input type="text" name="login">
-        <input type="text" name="password">
-        <input type="submit" value="Зарегестрироваться">
+        {{ form.as_p }}
+        <div class="position-absolute bottom-10 start-50 translate-middle-x">
+            <button type="submit" class = "btn btn-outline-light">Зарегестрироваться</button>
+        </div>
     </form>
-</body>
-</html>
+{% endblock %}
